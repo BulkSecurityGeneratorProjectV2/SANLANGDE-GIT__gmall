@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: wms-service
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: 4361b849-3090-4952-ac99-a1d44b90b4ca
