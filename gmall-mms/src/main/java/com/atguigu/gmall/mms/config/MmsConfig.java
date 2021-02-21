@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "aliyun.sms")
 @Data
 public class MmsConfig {
-    private String regionId;//: cn-hangzhou
-    private String accessKeyId;//: LTAI4GJyYdac9BqWv9HEkbgj
-    private String accessKeySecret;//: e8ZZNpTmwqzd6nZgU7gYxdGrOLCNxJ
-    private String templateCode;//: SMS_207963792
-    private String signName;//: 美年旅游
+    private String regionId;//:
+    private String accessKeyId;//:
+    private String accessKeySecret;//:
+    private String templateCode;//:
+    private String signName;//:
 }
