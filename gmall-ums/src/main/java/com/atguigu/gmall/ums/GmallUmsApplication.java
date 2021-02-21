@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableSwagger2
-@MapperScan("com.atguigu.gmall.ums.mapper")
 public class GmallUmsApplication {
 
     public static void main(String[] args) {

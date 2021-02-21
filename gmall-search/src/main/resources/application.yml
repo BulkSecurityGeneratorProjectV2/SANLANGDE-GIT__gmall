@@ -1,0 +1,51 @@
+server:
+  port: 18086
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+    discovery-client-enabled: false
+  elasticsearch:
+    rest:
+      uris: http://192.168.75.135:9200
+  sleuth:
+    sampler:
+      probability: 1
+  jackson:
+    default-property-inclusion: non_null
+  thymeleaf:
+    cache: false
+  rabbitmq:
+    host: 192.168.75.135
+    virtual-host: /cr
+    username: cr
+    password: 123qwe123
+    port: 5672
+    listener:
+      #监听器类型：simple-监听器会另线程获取消息，direct-直接使用监听器主线程获取消息
+      type: simple
+      simple:
+        #能者多劳/公平转发：每次获取一条消息，确认之后再去获取消息
+        prefetch: 1
+        concurrency: 3  #开启多线程消费消息
+        #配置消费者确认消息:
+        #   none-不确认，只要消费者获取消息即确认，相当于原生API中的自动确认
+        #   auto-自动确认，如果消费者在处理消息的过程中没有异常即确认，否则则会无限重试
+        #   manual-手动确认，相当于原生API中的手动确认：
+        #       channel.basicAck() ：
+        #       channel.basicNack() ：
+        #       channel.basicReject ：拒收
+        acknowledge-mode: manual
+
+feign:
+  sentinel:
+    enabled: true

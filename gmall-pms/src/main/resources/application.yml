@@ -9,6 +9,9 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
+    alibaba:
+      seata:
+        tx-service-group: gmall-tx-group
   zipkin:
     locator:
       discovery:
@@ -26,6 +29,16 @@ spring:
     port: 6379
   jackson:
     date-format: yyyy-MM-dd
+  rabbitmq:
+    host: 192.168.75.135
+    virtual-host: /cr
+    username: cr
+    password: 123qwe123
+    port: 5672
+    #配置生产者确认，确保消息到达交换机 :simple-同步阻塞确认,性能低，correlated-异步确认，none
+    publisher-confirm-type: correlated
+    #配置消息是否到达队列的确认机制
+    publisher-returns: true
 feign:
   sentinel:
     enabled: true

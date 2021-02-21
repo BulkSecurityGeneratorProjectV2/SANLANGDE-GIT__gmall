@@ -15,5 +15,11 @@ import com.atguigu.gmall.ums.entity.UserEntity;
 public interface UserService extends IService<UserEntity> {
 
     PageResultVo queryPage(PageParamVo paramVo);
+
+    Boolean checkData(String data, Integer type);
+
+    void sendCode(String phone);
+
+    void register(UserEntity userEntity, String code);
 }
 

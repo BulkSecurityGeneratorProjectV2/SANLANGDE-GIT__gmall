@@ -27,3 +27,20 @@ spring:
           uri: lb://wms-service
           predicates:
             - Path=/wms/**
+        - id: search-route
+          uri: lb://search-service
+          predicates:
+            - Host=search.gmall.com
+        - id: index-route1 # 首页的同步请求路由
+          uri: lb://index-service
+          predicates:
+            - Host=www.gmall.com, gmall.com
+          # - Path=/index/**  如果写在一个里面，他们的关系是and关系
+        - id: index-route2 # 首页的异步请求路由
+          uri: lb://index-service
+          predicates:
+            - Path=/index/**
+        - id: item-route
+          uri: lb://item-service
+          predicates:
+            - Host=item.gmall.com

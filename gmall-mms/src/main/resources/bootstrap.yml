@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: mms-service
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: 1dc5d7e2-9048-40c5-bdda-fb72b471dae5
+        file-extension: yaml

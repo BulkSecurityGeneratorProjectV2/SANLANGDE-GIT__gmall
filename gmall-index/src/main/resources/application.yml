@@ -1,0 +1,40 @@
+server:
+  port: 18087
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+    alibaba:
+      seata:
+        tx-service-group: gmall-tx-group
+  zipkin:
+    locator:
+      discovery:
+        enabled: false
+    base-url: http://localhost:9411
+    sender:
+      type: web
+  redis:
+    host: 192.168.75.135
+    port: 6379
+  thymeleaf:
+    cache: false
+  sleuth:
+    sampler:
+      probability: 1
+feign:
+  sentinel:
+    enabled: true
+mybatis-plus:
+  mapper-locations: classpath:/mapper/pms/**/*.xml
+  type-aliases-package: com.atguigu.gmall.pms.entity
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto

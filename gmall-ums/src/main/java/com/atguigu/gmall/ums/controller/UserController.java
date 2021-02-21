@@ -5,12 +5,7 @@ import java.util.List;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gmall.ums.entity.UserEntity;
 import com.atguigu.gmall.ums.service.UserService;
@@ -32,6 +27,31 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @PostMapping("register")
+    public void register(UserEntity userEntity,@RequestParam("code")String code){
+        this.userService.register(userEntity,code);
+    }
+
+    @PostMapping("code")
+    @ApiOperation("发送验证码")
+    public ResponseVo<Object> sendCode(@RequestParam("phone")String phone){
+        this.userService.sendCode(phone);
+        return ResponseVo.ok(null);
+    }
+
+    /**
+     * 数据校验
+     * @param data
+     * @param type  1-data:用户名，2-data：电话，3-data:邮箱
+     * @return
+     */
+    @GetMapping("check/{data}/{type}")
+    @ApiOperation("数据校验")
+    public ResponseVo<Boolean> checkData(@PathVariable("data")String data,@PathVariable("type")Integer type){
+        Boolean flag = this.userService.checkData(data,type);
+        return ResponseVo.ok(flag);
+    }
 
     /**
      * 列表

@@ -36,6 +36,18 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @GetMapping("all/{cid}")
+    public ResponseVo<List<CategoryEntity>> query123CategoriseByCid3(@PathVariable("cid")Long cid){
+        List<CategoryEntity> categoryEntities = categoryService.query123CategoriseByCid3(cid);
+        return ResponseVo.ok(categoryEntities);
+    }
+
+    @GetMapping("subs/{pid}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSub(@PathVariable("pid")Long pid){
+        List<CategoryEntity> categoryEntityList = this.categoryService.queryCategoriesWithSub(pid);
+        return ResponseVo.ok(categoryEntityList);
+    }
+
     @GetMapping("parent/{parentId}")
     public ResponseVo<List<CategoryEntity>> queryCategoryEntities(@PathVariable("parentId") Long parentId){
         QueryWrapper<CategoryEntity> queryWrapper = new QueryWrapper<>();
