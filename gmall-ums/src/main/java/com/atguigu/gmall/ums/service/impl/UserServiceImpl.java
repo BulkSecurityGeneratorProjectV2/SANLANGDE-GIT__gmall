@@ -1,7 +1,10 @@
 package com.atguigu.gmall.ums.service.impl;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -13,12 +16,19 @@ import com.atguigu.gmall.ums.mapper.UserMapper;
 import com.atguigu.gmall.ums.entity.UserEntity;
 import com.atguigu.gmall.ums.service.UserService;
 
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
 
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Override
     public PageResultVo queryPage(PageParamVo paramVo) {
@@ -28,6 +38,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         );
 
         return new PageResultVo(page);
+    }
+
+
+    @Override
+    public UserEntity queryInfo(String loginName, String password) {
+
+        List<UserEntity> userEntities = this.list(new QueryWrapper<UserEntity>().eq("username", loginName)
+                .or().eq("phone", loginName)
+                .or().eq("email", loginName));
+        for (UserEntity userEntity : userEntities) {
+            String salt = userEntity.getSalt();
+            if(StringUtils.equals(userEntity.getPassword(), DigestUtils.md5Hex(salt + DigestUtils.md5Hex(password)))){
+                return userEntity;
+            }
+        }
+        return null;
     }
 
     /**
@@ -69,7 +95,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     @Override
     public void register(UserEntity userEntity, String code) {
+        String cacheCode = redisTemplate.opsForValue().get("ums:register:" + userEntity.getPhone());
 
+        if(!StringUtils.equals(code,cacheCode)){
+            return;
+        }
+        //生成盐
+        String salt = StringUtils.replace(UUID.randomUUID().toString(), "-", "");
+        userEntity.setSalt(salt);
+        //对密码加密
+        userEntity.setPassword(DigestUtils.md5Hex(salt+DigestUtils.md5Hex(userEntity.getPassword())));
+
+        userEntity.setCreateTime(new Date());
+        userEntity.setLevelId(1l);
+        userEntity.setIntegration(1000);
+        userEntity.setGrowth(1000);
+        userEntity.setNickname(userEntity.getUsername());
+        //保存
+        boolean save = this.save(userEntity);
+
+        //删除redis中的记录
+        if(save){
+            redisTemplate.delete("ums:register:" + userEntity.getPhone());
+        }
     }
 
 }

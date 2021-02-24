@@ -2,9 +2,7 @@ package com.atguigu.gmall.mms.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-@Component
 @ConfigurationProperties(prefix = "aliyun.sms")
 @Data
 public class MmsConfig {

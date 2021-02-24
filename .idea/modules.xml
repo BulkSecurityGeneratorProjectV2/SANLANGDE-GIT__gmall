@@ -4,7 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../es-demo/es-demo.iml" filepath="$PROJECT_DIR$/../es-demo/es-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall.iml" filepath="$PROJECT_DIR$/gmall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-acms/gmall-acms.iml" filepath="$PROJECT_DIR$/gmall-acms/gmall-acms.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-admin/gmall-admin.iml" filepath="$PROJECT_DIR$/gmall-admin/gmall-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-auth/gmall-auth.iml" filepath="$PROJECT_DIR$/gmall-auth/gmall-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-cart/gmall-cart.iml" filepath="$PROJECT_DIR$/gmall-cart/gmall-cart.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-common/gmall-common.iml" filepath="$PROJECT_DIR$/gmall-common/gmall-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-gateway/gmall-gateway.iml" filepath="$PROJECT_DIR$/gmall-gateway/gmall-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-generator/gmall-generator.iml" filepath="$PROJECT_DIR$/gmall-generator/gmall-generator.iml" />
@@ -18,6 +21,7 @@
       <module fileurl="file://$PROJECT_DIR$/gmall-sms/gmall-sms.iml" filepath="$PROJECT_DIR$/gmall-sms/gmall-sms.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-sms-interface/gmall-sms-interface.iml" filepath="$PROJECT_DIR$/gmall-sms-interface/gmall-sms-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-ums/gmall-ums.iml" filepath="$PROJECT_DIR$/gmall-ums/gmall-ums.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gmall-ums-interface/gmall-ums-interface.iml" filepath="$PROJECT_DIR$/gmall-ums-interface/gmall-ums-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-wms/gmall-wms.iml" filepath="$PROJECT_DIR$/gmall-wms/gmall-wms.iml" />
       <module fileurl="file://$PROJECT_DIR$/gmall-wms-interface/gmall-wms-interface.iml" filepath="$PROJECT_DIR$/gmall-wms-interface/gmall-wms-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/../th-demo/th-demo.iml" filepath="$PROJECT_DIR$/../th-demo/th-demo.iml" />

@@ -7,7 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gmall-item" />
+        <module name="gmall-acms" />
+        <module name="gmall-mms" />
         <module name="th-demo" />
         <module name="gmall-oms" />
         <module name="gmall-pms" />
@@ -15,16 +16,19 @@
         <module name="gmall-sms" />
         <module name="gmall-index" />
         <module name="gmall-ums" />
-        <module name="gmall-mms" />
         <module name="gmall-wms" />
         <module name="gmall-sms-interface" />
         <module name="gmall-generator" />
-        <module name="gmall-common" />
+        <module name="gmall-item" />
+        <module name="gmall-cart" />
+        <module name="gmall-ums-interface" />
         <module name="gmall-gateway" />
         <module name="gmall-admin" />
+        <module name="gmall-common" />
         <module name="gmall-wms-interface" />
         <module name="es-demo" />
         <module name="gmall-pms-interface" />
+        <module name="gmall-auth" />
         <module name="gmall-search" />
       </profile>
     </annotationProcessing>
@@ -32,7 +36,10 @@
       <module name="demo" target="1.8" />
       <module name="es-demo" target="1.8" />
       <module name="gmall" target="1.8" />
+      <module name="gmall-acms" target="1.8" />
       <module name="gmall-admin" target="1.8" />
+      <module name="gmall-auth" target="1.8" />
+      <module name="gmall-cart" target="1.8" />
       <module name="gmall-common" target="1.8" />
       <module name="gmall-gateway" target="1.8" />
       <module name="gmall-generator" target="1.8" />
@@ -46,6 +53,7 @@
       <module name="gmall-sms" target="1.8" />
       <module name="gmall-sms-interface" target="1.8" />
       <module name="gmall-ums" target="1.8" />
+      <module name="gmall-ums-interface" target="1.8" />
       <module name="gmall-wms" target="1.8" />
       <module name="gmall-wms-interface" target="1.8" />
       <module name="th-demo" target="1.8" />
@@ -55,7 +63,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
       <module name="es-demo" options="-parameters" />
+      <module name="gmall-acms" options="-parameters" />
       <module name="gmall-admin" options="-parameters" />
+      <module name="gmall-auth" options="-parameters" />
+      <module name="gmall-cart" options="-parameters" />
       <module name="gmall-common" options="-parameters" />
       <module name="gmall-gateway" options="-parameters" />
       <module name="gmall-generator" options="-parameters" />
@@ -69,6 +80,7 @@
       <module name="gmall-sms" options="-parameters" />
       <module name="gmall-sms-interface" options="-parameters" />
       <module name="gmall-ums" options="-parameters" />
+      <module name="gmall-ums-interface" options="-parameters" />
       <module name="gmall-wms" options="-parameters" />
       <module name="gmall-wms-interface" options="-parameters" />
       <module name="th-demo" options="-parameters" />

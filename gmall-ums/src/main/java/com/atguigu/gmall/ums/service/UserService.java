@@ -21,5 +21,7 @@ public interface UserService extends IService<UserEntity> {
     void sendCode(String phone);
 
     void register(UserEntity userEntity, String code);
+
+    UserEntity queryInfo(String loginName, String password);
 }
 

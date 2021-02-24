@@ -181,7 +181,7 @@ class CompletableFutureDemo{
     public static void main(String[] args) {
 
         /**
-         * 所有的Async结尾的方法都可以重载代线程池的方法
+         * 所有以Async结尾的方法都是异步方法，都有可以重载代线程池的方法
          *
          * 初始化方法
          * runAsync:子任务没有返回结果

@@ -83,7 +83,7 @@ public class IndexService {
 
         RLock lock = redissonClient.getLock("lock");
         //加锁
-        lock.lock(10,TimeUnit.SECONDS);
+        lock.lock();
 
         try {
             // 查询redis中的num值

@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -24,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
+@EnableConfigurationProperties(MmsConfig.class)
 public class MmsService {
 
     @Autowired

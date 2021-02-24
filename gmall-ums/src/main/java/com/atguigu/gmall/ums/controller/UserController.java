@@ -28,9 +28,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("query")
+    public ResponseVo<UserEntity> query(@RequestParam("loginName")String loginName,@RequestParam("password")String password){
+        UserEntity userEntity = this.userService.queryInfo(loginName, password);
+        return ResponseVo.ok(userEntity);
+    }
+
     @PostMapping("register")
-    public void register(UserEntity userEntity,@RequestParam("code")String code){
+    @ApiOperation("用户注册")
+    public ResponseVo<Object> register(UserEntity userEntity,@RequestParam("code")String code){
         this.userService.register(userEntity,code);
+        return ResponseVo.ok(null);
     }
 
     @PostMapping("code")
