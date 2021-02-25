@@ -19,6 +19,7 @@ public class CorsConfig {
         configuration.addAllowedOrigin("http://127.0.0.1");
         configuration.addAllowedOrigin("http://api.gmall.com");
         configuration.addAllowedOrigin("http://www.gmall.com");
+        configuration.addAllowedOrigin("http://item.gmall.com");
         configuration.setAllowCredentials(true);
         //允许的请求的方法
         configuration.addAllowedMethod("*");

@@ -26,7 +26,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("这是拦截器前置方法");
+        //System.out.println("这是拦截器前置方法");
 
         UserInfo userInfo = new UserInfo();
 
@@ -57,7 +57,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("这是拦截器完成时方法");
+        //System.out.println("这是拦截器完成时方法");
         //在视图渲染完成之后执行，经常在完成方法中释放资源
         //这里必须清空threadLocal中的资源，因为使用的是tomcat线程池，线程无法结束
         THREAD_LOCAL.remove();

@@ -37,6 +37,7 @@ public class SpuInfoListener {
         }
         // 创建索引
         this.searchService.createIndex(id);
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
     }
 }
 

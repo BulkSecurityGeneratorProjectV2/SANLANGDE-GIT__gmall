@@ -12,7 +12,7 @@ public class MyGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        System.out.println("全局过滤器，无差别拦截所有网关请求");
+        //System.out.println("全局过滤器，无差别拦截所有网关请求");
         return chain.filter(exchange);
     }
 

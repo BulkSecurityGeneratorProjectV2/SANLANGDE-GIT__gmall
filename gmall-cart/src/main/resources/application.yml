@@ -38,6 +38,16 @@ spring:
       shutdown:
         await-termination: true
         await-termination-period: 60
+  rabbitmq:
+    virtual-host: /cr
+    host: 192.168.75.135
+    username: cr
+    password: 123qwe123
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 3
+        prefetch: 1
 feign:
   sentinel:
     enabled: true
