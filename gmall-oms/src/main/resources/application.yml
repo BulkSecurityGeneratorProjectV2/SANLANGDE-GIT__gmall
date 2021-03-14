@@ -25,6 +25,18 @@ spring:
   redis:
     host: 192.168.75.135
     port: 6379
+  rabbitmq:
+    virtual-host: /cr
+    host: 192.168.75.135
+    username: cr
+    password: 123qwe123
+    listener:
+      simple:
+        concurrency: 3
+        prefetch: 1
+        acknowledge-mode: manual
+    publisher-returns: true
+    publisher-confirm-type: correlated
 feign:
   sentinel:
     enabled: true

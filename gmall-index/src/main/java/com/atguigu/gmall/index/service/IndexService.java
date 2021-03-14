@@ -40,6 +40,7 @@ public class IndexService {
         return responseVo.getData();
     }
 
+    //AOP+分布式锁+布隆过滤器 实现缓存
     @GmallCache(prefix = "index:category:",timeout = 43200,random = 7200,lock="index:cate:lock:")
     public List<CategoryEntity> queryLvl2CategoriesWithSub(Long pid) {
         ResponseVo<List<CategoryEntity>> categoriesResponseVo = pmsClient.queryCategoriesWithSub(pid);
@@ -47,6 +48,7 @@ public class IndexService {
         return categoryEntities;
     }
 
+    //redisson :实现分布式锁
     public List<CategoryEntity> queryLvl2CategoriesWithSub2(Long pid) {
 
         String json = redisTemplate.opsForValue().get(KEY_PREFIX+pid);
@@ -108,6 +110,7 @@ public class IndexService {
             lock.unlock();
         }
     }
+
     public void testLock4() {
 
         String uuid=UUID.randomUUID().toString();

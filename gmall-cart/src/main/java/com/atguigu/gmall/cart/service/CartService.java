@@ -49,8 +49,22 @@ public class CartService {
     @Autowired
     private CartAsyncService cartAsyncService;
 
+    public List<Cart> queryCheckedCarts(Long userId) {
+
+        BoundHashOperations<String, Object, Object> hashOps = this.redisTemplate.boundHashOps(KEY_PREFIX + userId.toString());
+        if (hashOps.size()==0) {
+            return null;
+        }
+        List<Object> cartJsons = hashOps.values();
+        if(!CollectionUtils.isEmpty(cartJsons)){
+            return cartJsons.stream().map(cartJson->JSON.parseObject(cartJson.toString(),Cart.class)).filter(cart -> cart.getCheck()).collect(Collectors.toList());
+        }
+
+        return null;
+    }
+
     /**
-     * 新增购物车
+     * 添加购物车
      * @param cart
      */
     public void saveCart(Cart cart) {
@@ -138,6 +152,7 @@ public class CartService {
         if(!CollectionUtils.isEmpty(unLoginCartJsons)){
             unLoginCarts =unLoginCartJsons.stream().map(unLoginCart-> {
                 Cart cart = JSON.parseObject(unLoginCart.toString(), Cart.class);
+                //查询未登录购物车，并设置比价
                 cart.setCurrentPrice(new BigDecimal(this.redisTemplate.opsForValue().get(KEY_PRICE_PREFIX + cart.getSkuId())));
                 return cart;
             }).collect(Collectors.toList());
@@ -173,6 +188,7 @@ public class CartService {
         }
         //5.删除未登录的购物车
         this.redisTemplate.delete(unLoginKey);
+        //异步删除MySQL
         this.cartAsyncService.deleteCart(userKey);
         //6.返回登录状态的购物车
         List<Object> cartJsons = loginHashOps.values();
@@ -180,6 +196,7 @@ public class CartService {
         if(!CollectionUtils.isEmpty(cartJsons)){
             return cartJsons.stream().map(cartJson->{
                 Cart cart = JSON.parseObject(cartJson.toString(), Cart.class);
+                //设置商品的比价
                 if(this.redisTemplate.hasKey(KEY_PRICE_PREFIX + cart.getSkuId()))
                     cart.setCurrentPrice(new BigDecimal(this.redisTemplate.opsForValue().get(KEY_PRICE_PREFIX + cart.getSkuId())));
                 return cart;
@@ -248,7 +265,7 @@ public class CartService {
     }
 
 
-
+/*
     @Async
     public void executor2() {
         System.out.println("executor2()方法开始执行");
@@ -272,6 +289,6 @@ public class CartService {
         } catch (InterruptedException e) {
             //return AsyncResult.forExecutionException(e);
         }
-    }
+    }*/
 
 }

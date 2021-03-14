@@ -27,11 +27,10 @@ public class AuthService {
     @Autowired
     private JwtProperties jwtProperties;
 
-    public void accredit(String loginName, String password, HttpServletRequest request, HttpServletResponse response) {
+    public void accredit(String loginName, String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        try {
             //1、远程调用校验用户名密码是否正确
-            ResponseVo<UserEntity> userEntityResponseVo = gmallUmsClient.query(loginName, password);
+            ResponseVo<UserEntity> userEntityResponseVo = this.gmallUmsClient.query(loginName, password);
             UserEntity userEntity = userEntityResponseVo.getData();
 
             //2、判断用户信息是否为空
@@ -54,10 +53,6 @@ public class AuthService {
             CookieUtils.setCookie(request,response,this.jwtProperties.getCookieName(),token,this.jwtProperties.getExpire() * 60);
             //6、用户昵称放入cookie中，方便页面展示昵称
             CookieUtils.setCookie(request,response,this.jwtProperties.getUnick(),userEntity.getNickname(),this.jwtProperties.getExpire() * 60);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
 
     }
 }

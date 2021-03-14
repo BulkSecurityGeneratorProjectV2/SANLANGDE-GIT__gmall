@@ -49,7 +49,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
 
-
         //状态字段导致线程安全问题，即使加锁也无法解决
         THREAD_LOCAL.set(userInfo);
         return true;

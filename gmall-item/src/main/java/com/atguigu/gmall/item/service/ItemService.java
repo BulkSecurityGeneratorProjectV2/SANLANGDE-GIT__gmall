@@ -45,6 +45,8 @@ public class ItemService {
     public ItemVo loadData(Long skuId) {
         ItemVo itemVo = new ItemVo();
 
+        //TODO:放入缓存
+
         //获取sku相关信息
         CompletableFuture<SkuEntity> skuFuture = CompletableFuture.supplyAsync(() -> {
             ResponseVo<SkuEntity> skuEntityResponseVo = this.pmsClient.querySkuById(skuId);

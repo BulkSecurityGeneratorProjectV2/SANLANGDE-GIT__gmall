@@ -1,12 +1,12 @@
 package com.atguigu.gmall.cart.controller;
 
 import com.atguigu.gmall.cart.entity.Cart;
+import com.atguigu.gmall.cart.interceptor.LoginInterceptor;
 import com.atguigu.gmall.cart.service.CartService;
 import com.atguigu.gmall.common.bean.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +18,19 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+
+    @GetMapping("order/check/{userId}")
+    @ResponseBody
+    public ResponseVo<List<Cart>> queryCheckedCarts(@PathVariable("userId")Long userId){
+        List<Cart> carts = this.cartService.queryCheckedCarts(userId);
+        return ResponseVo.ok(carts);
+    }
+
+    /**
+     * 删除购物车
+     * @param skuId
+     * @return
+     */
     @PostMapping("deleteCart")
     @ResponseBody
     public ResponseVo deleteCart(@RequestParam("skuId")String skuId){
@@ -62,11 +75,11 @@ public class CartController {
     @RequestMapping("test")
     @ResponseBody
     public String test(){
-        //System.out.println(LoginInterceptor.getUserInfo());
+        System.out.println(LoginInterceptor.getUserInfo());
         long start = System.currentTimeMillis();
 
-        this.cartService.executor1();
-        this.cartService.executor2();
+        //this.cartService.executor1();
+        //this.cartService.executor2();
 
 //
 //        executor1.addCallback(result->{

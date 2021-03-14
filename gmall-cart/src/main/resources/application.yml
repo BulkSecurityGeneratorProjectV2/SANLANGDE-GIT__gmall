@@ -30,13 +30,13 @@ spring:
     execution:
       thread-name-prefix: cart-task-
       pool:
-        core-size: 100
-        max-size: 500
-        queue-capacity: 1000
-        keep-alive: 60s
+        core-size: 100  #线程池核心线程数
+        max-size: 500   #线程池最大可扩展线程数
+        queue-capacity: 1000  #子任务队列数
+        keep-alive: 60s   #可扩展线程存活时间
         allow-core-thread-timeout: false #核心线程数是否可伸缩
       shutdown:
-        await-termination: true
+        await-termination: true   #服务器关闭时是否等待线程执行结束
         await-termination-period: 60
   rabbitmq:
     virtual-host: /cr

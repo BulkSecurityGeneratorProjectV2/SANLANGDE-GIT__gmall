@@ -94,7 +94,7 @@ public class SpuController {
     @ApiOperation("修改")
     public ResponseVo update(@RequestBody SpuEntity spu){
 		spuService.updateById(spu);
-        this.rabbitTemplate.convertAndSend("cart_exchange","cart.update",spu.getId());
+        this.rabbitTemplate.convertAndSend("CART_EXCHANGE","cart.price",spu.getId());
         return ResponseVo.ok();
     }
 

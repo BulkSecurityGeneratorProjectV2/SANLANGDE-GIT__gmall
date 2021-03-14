@@ -46,7 +46,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
         return new GatewayFilter() {
             @Override
             public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-                System.out.println("这是自定义过滤器" + config.authPaths);
+                //System.out.println("这是自定义过滤器" + config.authPaths);
 
                 ServerHttpRequest request = exchange.getRequest();
                 ServerHttpResponse response = exchange.getResponse();
@@ -84,7 +84,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                     }
                     //6. 传递登录信息给后续服务。后续各服务就不用再去解析了
                     // 通过request 头信息传递登录信息
-                    request.mutate().header("userId",info.get("userId").toString()).header("userName",info.get("userName").toString()).build();
+                    request.mutate().header("userId",info.get("userId").toString()).build();
                     exchange.mutate().request(request).build();
 
                 } catch (Exception e) {

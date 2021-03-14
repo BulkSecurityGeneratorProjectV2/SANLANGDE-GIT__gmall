@@ -1,6 +1,7 @@
 package com.atguigu.gmall.auth.controller;
 
 import com.atguigu.gmall.auth.service.AuthService;
+import com.atguigu.gmall.common.exception.AuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,11 @@ public class AuthController {
                         @RequestParam("returnUrl")String returnUrl,
                         HttpServletRequest request,
                         HttpServletResponse response){
-        this.authService.accredit(loginName,password,request,response);
+        try {
+            this.authService.accredit(loginName,password,request,response);
+        } catch (Exception e) {
+            throw new AuthException("登录失败，请重试");
+        }
         return "redirect:"+returnUrl;
     }
 
